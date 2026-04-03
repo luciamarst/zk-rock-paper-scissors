@@ -2,35 +2,34 @@ pragma circom 2.0.0;
 
 template piedra_papel_tijera () autocomplete{
 
-	//Piedra -> 0, Papel-> 1, Tijera->2
-	signal input jugador1;//Representa ele stado del jugador 1
-	signal input jugador2;//Representa el estado del jugador 2
-	signal output ganador;//Representa cual de los dos jugadores ha ganado, 0-> jugador1 ; 1->jugador2, 2 -> empate
+	//Rock -> 0, Paper-> 1, Scissors->2
+	signal input jugador1;//Player1
+	signal input jugador2;//Player2
+	signal output ganador;//Winner, 0-> Player1 ; 1->Player2, 2 -> Dead heat
 
-	//Código en C
-	if(jugador1 == jugador2){ //Empate
+	if(jugador1 == jugador2){ //Dead heat
 		ganador <-- 2;
 	}
-	else if(jugador2 == 0 && jugador1 == 2){ //Gana jugador 2 con piedra
+	else if(jugador2 == 0 && jugador1 == 2){ //P2 wins with rock
 		ganador <--1;
 	}
-	else if(jugador1 == 0 && jugador2 == 2){ // Gana jugador 1 con piedra
+	else if(jugador1 == 0 && jugador2 == 2){ //P1 wins with rock
 		ganador <--0;
 	}
-	else if(jugador2 == 2 && jugador1 == 1){ //Gana jugadpr 2 con tijera
+	else if(jugador2 == 2 && jugador1 == 1){ //P2 wins with scissors 
 		ganador <--1;
 	}
-	else if(jugador1 == 2 && jugador2 == 1){ //Gana jugador 1 con tijera
+	else if(jugador1 == 2 && jugador2 == 1){ //P1 wins with scissors 
 		ganador <-- 0;
 	}
-	else if(jugador2 == 1 && jugador1 == 0){ //Gana jugador 2 ocn papel
+	else if(jugador2 == 1 && jugador1 == 0){ //P2 wins with paper 
 		ganador <--1;
 	}
-	else if(jugador1 == 1 && jugador2 == 0){ // Gana jugador 1 con papel
+	else if(jugador1 == 1 && jugador2 == 0){ //P1 wins with paper 
 		ganador <-- 0;
 	}
 	else{
-		ganador <-- 1; //Valor no valido
+		ganador <-- 3; //NO valid result (no previous combination happens)
 	}
 }	
 
